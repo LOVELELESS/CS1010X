@@ -1,0 +1,36 @@
+# selection-sort
+def selection_sort(lst):
+  res = []  
+  while lst:
+    smallest = 99999 #some random large number
+    for index,num in enumerate(lst):
+      if num < smallest:
+        smallest = num
+    res.append(smallest)
+    lst.remove(smallest)
+  return res
+
+
+
+def merge_sort(lst):
+  length = len(lst)
+  if length < 2:
+    return lst
+  else:
+    mid = length // 2
+    left = merge_sort(lst[:mid])
+    right = merge_sort(lst[mid:])
+    return merge(left,right)
+def merge(lst1,lst2):
+  res = []
+  while lst1 and lst2:
+    if lst1[0] <= lst2[0]:
+      res.append(lst1[0])
+      del lst1[0]
+    else:
+      res.append(lst2[0])
+      del lst2[0]
+  res.extend(lst1)
+  res.extend(lst2)
+  return res
+     
