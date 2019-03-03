@@ -1,0 +1,38 @@
+def deposit(principal, interest, duration):
+    if duration == 0:
+        return principal
+    else:
+        return deposit(principal*(interest+1), interest,duration-1)
+
+def balance(principal, interest, payout, duration):
+    if duration == 0:
+        return principal
+    else:
+        return balance(principal*(interest+1)-payout,interest,payout,duration-1)
+
+def new_balance(principal, gap, payout, duration):
+    def get_interest(interest):
+        new_dep = deposit(principal,interest,gap)
+        return balance(new_dep,interest,payout,duration)
+    return get_interest
+    
+#Important Mtd!!!
+
+def bisection(f,a,b,tol):
+    xl = a
+    xr = b
+    while abs(xl-xr) >= tol:
+        c = (xl+xr)/2.0
+        prod = f(xl) * f(c)
+        if prod > tol:
+            xl = c
+        else:
+            if prod < tol:
+                xr = c
+    return c
+#
+
+def find_cpf_rate():
+    bal = new_balance(166000,121,1280,240)
+    interest = bisection(bal,0,1,1e-8)
+    return round((interest + 1) ** 12 - 1,4)
