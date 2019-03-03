@@ -1,0 +1,12 @@
+Binary Search:
+- time: O(logn)
+- space: O(1) - tail-end optimisation
+
+Tuple Concatenation 
+
+Selection Sort
+
+Merge Sort
+
+Counting Change Problem
+
