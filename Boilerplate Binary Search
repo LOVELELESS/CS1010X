@@ -1,0 +1,13 @@
+def binary_search(x, seq):
+    def finder(low,high):
+        if low>high:
+            return False
+        else:
+            mid = (low + high) // 2
+            if seq[mid] == x:
+                return True
+            elif seq[mid] > x:
+                return finder(low,mid-1)
+            else:
+                return finder(mid+1,high)
+    return finder(0,len(seq)-1)
